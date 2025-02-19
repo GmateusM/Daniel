@@ -11,6 +11,7 @@
       --secondary-color: #ffffff; /* Branco */
       --accent-color: #FFD700; /* Dourado */
       --text-color: #353535; /* Texto escuro */
+      --border-color: #4b4b4b; /* Grafite */
       --heading-font: 'Playfair Display', serif;
       --body-font: 'Roboto', sans-serif;
     }
@@ -58,9 +59,9 @@
     .card {
       background: var(--secondary-color);
       border-radius: 15px;
-      border: 1px solid #ddd;
+      border: 5px solid var(--border-color); /* Borda grafite */
       padding: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       text-align: center;
     }
