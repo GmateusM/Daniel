@@ -4,15 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de Presentes de Casamento</title>
-  <!-- Fontes elegantes -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #004db3; /* Azul profundo - destaque principal */
-      --secondary-color: #047dff; /* Azul claro - toque suave */
-      --accent-color: #FFD700; /* Dourado - contraste vibrante */
-      --background-color: #ffffff; /* Fundo branco */
-      --text-color: #353535; /* Texto escuro para contraste */
+      --primary-color: #004db3; /* Azul profundo */
+      --secondary-color: #ffffff; /* Branco */
+      --accent-color: #FFD700; /* Dourado */
+      --text-color: #353535; /* Texto escuro */
       --heading-font: 'Playfair Display', serif;
       --body-font: 'Roboto', sans-serif;
     }
@@ -24,29 +22,26 @@
     body {
       font-family: var(--body-font);
       color: var(--text-color);
-      background: var(--background-color);
+      background: var(--secondary-color);
       padding: 20px;
       line-height: 1.6;
     }
     header {
       text-align: center;
       margin-bottom: 40px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, #004db3, #047dff); /* Gradiente do azul escuro para o azul claro */
       color: #fff;
       padding: 40px 20px;
       border-radius: 20px;
-      position: relative;
-      overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
     header h1 {
       font-family: var(--heading-font);
-      font-size: clamp(2rem, 5vw, 3.5rem); /* Tamanho responsivo */
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 10px;
     }
     header p {
-      font-family: var(--body-font);
-      font-size: clamp(1rem, 3vw, 1.2rem); /* Tamanho responsivo */
+      font-size: clamp(1rem, 3vw, 1.2rem);
       color: rgba(255, 255, 255, 0.8);
       margin-top: 10px;
     }
@@ -56,17 +51,18 @@
     }
     .gift-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Melhor ajuste para telas menores */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-bottom: 40px;
     }
     .card {
-      background: #fff;
+      background: var(--secondary-color);
       border-radius: 15px;
-      border: 5px solid #4b4b4b46; /* Borda grafite */
-      padding: 20px; /* Espaçamento interno */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.027);
-      transition: transform 0.3s;
+      border: 1px solid #ddd;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
     }
     .card:hover {
       transform: translateY(-5px);
@@ -74,48 +70,41 @@
     }
     .card img {
       width: 100%;
-      height: 200px; /* Altura fixa menor para telas menores */
+      height: 200px;
       object-fit: cover;
+      border-radius: 10px;
       transition: transform 0.3s ease;
     }
     .card:hover img {
-      transform: scale(1.1);
-    }
-    .card-content {
-      padding: 20px;
-      text-align: center;
+      transform: scale(1.05);
     }
     .card-title {
       font-family: var(--heading-font);
-      font-size: clamp(1.2rem, 3vw, 1.8rem); /* Tamanho responsivo */
-      margin-bottom: 15px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 15px 0;
       color: var(--primary-color);
     }
     .card button {
       padding: 12px 20px;
-      font-size: clamp(0.9rem, 2vw, 1rem); /* Tamanho responsivo */
+      font-size: clamp(0.9rem, 2vw, 1rem);
       background: var(--accent-color);
       color: #fff;
       border: none;
       border-radius: 20px;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.3s ease;
-      min-height: 48px; /* Altura mínima para toque em mobile */
+      min-height: 48px;
     }
     .card button:hover:not(:disabled) {
-      background: #FFC107; /* Dourado mais escuro ao passar o mouse */
+      background: #e0b800; /* Tom mais escuro ao passar o mouse */
       transform: scale(1.05);
-    }
-    .card button:disabled {
-      background: #ccc;
-      cursor: default;
     }
     .admin-link {
       text-align: center;
       margin-bottom: 30px;
     }
     .admin-link a {
-      font-size: clamp(1rem, 2vw, 1.2rem); /* Tamanho responsivo */
+      font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--primary-color);
       text-decoration: none;
       border-bottom: 1px solid var(--primary-color);
@@ -126,11 +115,10 @@
       color: var(--accent-color);
       border-color: var(--accent-color);
     }
-    /* Painel administrativo */
     .admin-view {
       display: none;
       margin-top: 40px;
-      background: #fff;
+      background: var(--secondary-color);
       border-radius: 20px;
       padding: 30px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
@@ -144,10 +132,10 @@
     }
     .admin-form input {
       padding: 12px;
-      font-size: clamp(0.9rem, 2vw, 1rem); /* Tamanho responsivo */
+      font-size: clamp(0.9rem, 2vw, 1rem);
       border: 1px solid #ddd;
       border-radius: 20px;
-      width: 100%; /* Largura total para telas menores */
+      width: 100%;
       max-width: 300px;
       margin: 10px auto;
       transition: border-color 0.3s ease;
@@ -158,7 +146,7 @@
     }
     .admin-form button {
       padding: 12px 20px;
-      font-size: clamp(0.9rem, 2vw, 1rem); /* Tamanho responsivo */
+      font-size: clamp(0.9rem, 2vw, 1rem);
       background: var(--accent-color);
       color: #fff;
       border: none;
@@ -167,14 +155,14 @@
       transition: background 0.3s ease, transform 0.3s ease;
     }
     .admin-form button:hover {
-      background: #Ffd700; /* Dourado mais escuro ao passar o mouse */
+      background: #e0b800; /* Tom mais escuro ao passar o mouse */
       transform: scale(1.05);
     }
     .admin-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      font-size: clamp(0.9rem, 2vw, 1rem); /* Tamanho responsivo */
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
     .admin-table th,
     .admin-table td {
@@ -193,7 +181,18 @@
     .admin-table tr:hover {
       background: #f1f1f1;
     }
-    /* Media Queries para Responsividade */
+    .remove-button {
+      background: #ff4d4d;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .remove-button:hover {
+      background: #e60000;
+    }
     @media (max-width: 768px) {
       header {
         padding: 30px 15px;
@@ -244,4 +243,177 @@
 </head>
 <body>
   <header>
-    <h1>Lista de Presentes
+    <h1>Lista de Presentes</h1>
+    <p>Escolha o presente perfeito para celebrar este momento especial!</p>
+  </header>
+  <div class="container">
+    <div class="gift-grid" id="giftGrid">
+      <!-- Cartões gerados via JS -->
+    </div>
+    <div class="admin-link">
+      <a href="#" id="toggleAdmin">Área Administrativa</a>
+    </div>
+    <div class="admin-view" id="adminView">
+      <div class="admin-form" id="adminForm">
+        <input type="text" id="adminUsername" placeholder="Usuário">
+        <input type="password" id="adminPassword" placeholder="Senha">
+        <button id="adminLogin">Entrar</button>
+      </div>
+      <div id="adminContent" style="display: none;">
+        <h2 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Presentes Reservados</h2>
+        <table class="admin-table" id="adminTable">
+          <thead>
+            <tr>
+              <th>Presente</th>
+              <th>Reservado por</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Linhas geradas via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    const gifts = [
+      { id: 1, name: "Assadeira de aço inox", imageUrl: "Daniel/Assadeira-aço-inox.png" },
+      { id: 2, name: "Colher de pau", imageUrl: "Daniel/Colher-de-pau.jpeg" },
+      { id: 3, name: "Colher de arroz de silicone", imageUrl: "Daniel/Colher-de-arroz-de-silicone.jpg" },
+      { id: 4, name: "Concha de silicone", imageUrl: "Daniel/Concha-de-silicone.png" },
+      { id: 5, name: "Cortador de pizza", imageUrl: "Daniel/Cortador-de-pizza.jpg" },
+      { id: 6, name: "Espátula de bolo", imageUrl: "Daniel/Espátula-de-bolo.jpg" },
+      { id: 7, name: "Expremedor de batata", imageUrl: "Daniel/Expremedor-de-batata.jpg" },
+      { id: 8, name: "Frigideira antiaderente 35 cm", imageUrl: "Daniel/Frigideira-antiaderente-35-cm.jpg" },
+      { id: 9, name: "Fuê de silicone", imageUrl: "Daniel/Fuê-de-silicone.jpeg" },
+      { id: 10, name: "Garrafa térmica", imageUrl: "Daniel/Garrafa-térmica.jpg" },
+      { id: 11, name: "Jogo de 3 assadeiras", imageUrl: "Daniel/Jogo-de-3-assadeiras.jpg" },
+      { id: 12, name: "Mini triturador de alimentos elétrico", imageUrl: "Daniel/Mini-triturador-de-alimentos-elétrico.jpg" },
+      { id: 13, name: "Moedor de pimenta", imageUrl: "Daniel/Moedor-de-pimenta.jpg" },
+      { id: 14, name: "Pegador de macarrão de silicone", imageUrl: "Daniel/Pegador-de-macarrão-de-silicone.jpeg" },
+      { id: 15, name: "Pegador de silicone", imageUrl: "Daniel/Pegador-de-silicone.jpg" },
+      { id: 16, name: "Porta-tempeiros", imageUrl: "Daniel/Porta-tempeiros.jpg" },
+      { id: 17, name: "Refratário 45x35", imageUrl: "Daniel/Refratário-45x35.jpg" },
+      { id: 18, name: "Refratário 30x20", imageUrl: "Daniel/Refratário-30x20.jpg" },
+      { id: 19, name: "Rolo de massas", imageUrl: "Daniel/Rolo-de-massas.jpg" },
+      { id: 20, name: "Tábua de corte 45 cm", imageUrl: "Daniel/Tábua-de-corte-45-cm.jpg" }
+    ];
+    
+    const ADMIN_USERNAME = "Daniel";
+    const ADMIN_PASSWORD = "12345";
+    
+    function getReservations() {
+      const data = localStorage.getItem("giftReservations");
+      return data ? JSON.parse(data) : {};
+    }
+    
+    function saveReservations(reservations) {
+      localStorage.setItem("giftReservations", JSON.stringify(reservations));
+    }
+    
+    function renderGifts() {
+      const giftGrid = document.getElementById("giftGrid");
+      giftGrid.innerHTML = "";
+      const reservations = getReservations();
+      gifts.forEach(gift => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const img = document.createElement("img");
+        img.src = gift.imageUrl;
+        img.alt = gift.name;
+        card.appendChild(img);
+        const title = document.createElement("h3");
+        title.className = "card-title";
+        title.textContent = gift.name;
+        card.appendChild(title);
+        const btn = document.createElement("button");
+        if (reservations[gift.id]) {
+          btn.textContent = "Reservado";
+          btn.disabled = true;
+        } else {
+          btn.textContent = "Reservar";
+          btn.onclick = () => reserveGift(gift.id);
+        }
+        card.appendChild(btn);
+        giftGrid.appendChild(card);
+      });
+    }
+    
+    function reserveGift(giftId) {
+      const name = prompt("Digite seu nome para reservar este presente:");
+      if (!name || name.trim().length < 3) {
+        alert("Nome inválido. Use pelo menos 3 caracteres.");
+        return;
+      }
+      const reservations = getReservations();
+      if (reservations[giftId]) {
+        alert("Este presente já foi reservado.");
+        return;
+      }
+      reservations[giftId] = name.trim();
+      saveReservations(reservations);
+      alert("Presente reservado com sucesso!");
+      renderGifts();
+    }
+    
+    function renderAdmin() {
+      const adminTableBody = document.querySelector("#adminTable tbody");
+      adminTableBody.innerHTML = "";
+      const reservations = getReservations();
+      gifts.forEach(gift => {
+        if (reservations[gift.id]) {
+          const tr = document.createElement("tr");
+          const tdName = document.createElement("td");
+          tdName.textContent = gift.name;
+          const tdReserved = document.createElement("td");
+          tdReserved.textContent = reservations[gift.id];
+          const tdActions = document.createElement("td");
+          const removeBtn = document.createElement("button");
+          removeBtn.textContent = "Remover Reserva";
+          removeBtn.className = "remove-button";
+          removeBtn.onclick = () => removeReservation(gift.id);
+          tdActions.appendChild(removeBtn);
+          tr.appendChild(tdName);
+          tr.appendChild(tdReserved);
+          tr.appendChild(tdActions);
+          adminTableBody.appendChild(tr);
+        }
+      });
+    }
+    
+    function removeReservation(giftId) {
+      const reservations = getReservations();
+      if (reservations[giftId]) {
+        delete reservations[giftId];
+        saveReservations(reservations);
+        alert("Reserva removida com sucesso!");
+        renderAdmin();
+        renderGifts();
+      } else {
+        alert("Este presente não está reservado.");
+      }
+    }
+    
+    document.getElementById("toggleAdmin").addEventListener("click", function(e) {
+      e.preventDefault();
+      const adminView = document.getElementById("adminView");
+      adminView.classList.toggle("active");
+    });
+    
+    document.getElementById("adminLogin").addEventListener("click", function() {
+      const inputUsername = document.getElementById("adminUsername").value;
+      const inputPass = document.getElementById("adminPassword").value;
+      if (inputUsername === ADMIN_USERNAME && inputPass === ADMIN_PASSWORD) {
+        document.getElementById("adminForm").style.display = "none";
+        document.getElementById("adminContent").style.display = "block";
+        renderAdmin();
+      } else {
+        alert("Credenciais incorretas!");
+      }
+    });
+    
+    renderGifts();
+  </script>
+</body>
+</html>
